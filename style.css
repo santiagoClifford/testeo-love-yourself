@@ -1,0 +1,294 @@
+/* ============================================================
+   LOVE YOURSELF · página del estudio
+   Mezcla de los dos estilos de clifford1one:
+     - el sitio: títulos Barlow Condensed 900 en mayúsculas,
+       etiquetas en Press Start 2P, barras con línea arriba/abajo
+     - el portafolio: papel cálido, rojo de marca, paneles de
+       color liso al lado del texto, cuerpo en Heebo
+   ============================================================ */
+
+:root {
+  --red: #e00000;
+  --red-dk: #a30000;
+  --ink: #171412;
+  --paper: #f2f0ec;
+  --bone: #e5e0d8;
+  --dim: rgba(23, 20, 18, 0.55);
+  --line: rgba(23, 20, 18, 0.18);
+
+  --display: "Barlow Condensed", "Helvetica Neue", Arial, sans-serif;
+  --body: "Heebo", "Helvetica Neue", Arial, sans-serif;
+  --pix: "Press Start 2P", monospace;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  overflow-x: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+/* ---------- etiquetas pixel ---------- */
+.tag {
+  font-family: var(--pix);
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  line-height: 1.8;
+  color: var(--dim);
+  text-transform: uppercase;
+}
+.dim { color: var(--dim); }
+
+/* ---------- barras ---------- */
+.topbar, .bottombar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1.25rem;
+  font-family: var(--pix);
+  font-size: 7px;
+  letter-spacing: 1px;
+}
+.topbar { border-bottom: 1.5px solid var(--ink); position: sticky; top: 0; background: var(--paper); z-index: 5; }
+.bottombar { border-top: 1.5px solid var(--ink); }
+.bottombar a { text-decoration: none; }
+.bottombar a:hover { color: var(--red); }
+
+/* ---------- portada ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: 3rem 1.25rem 2.5rem;
+  border-bottom: 1.5px solid var(--ink);
+  align-items: center;
+}
+.hero h1 {
+  font-family: var(--display);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(56px, 15vw, 180px);
+  overflow-wrap: break-word;
+  line-height: 0.86;
+  letter-spacing: -2px;
+  margin: 0.6rem 0 1.2rem;
+}
+.hero .lead {
+  font-size: 1.15rem;
+  max-width: 32ch;
+  margin-bottom: 1.6rem;
+}
+.hero-brain {
+  width: min(78%, 420px);
+  justify-self: center;
+  animation: flota 4s ease-in-out infinite;
+}
+@keyframes flota {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-12px) rotate(2deg); }
+}
+
+/* ---------- botones ---------- */
+.btn {
+  display: inline-block;
+  font-family: var(--display);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 1.35rem;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.55em 1em;
+  border: 1.5px solid var(--ink);
+  transition: letter-spacing 0.2s, background 0.15s;
+}
+.btn:hover { letter-spacing: 2px; background: var(--red); border-color: var(--red); }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn.ghost:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* ---------- secciones partidas ---------- */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  border-bottom: 1.5px solid var(--ink);
+}
+.panel {
+  background: var(--bone);
+  padding: 2rem 1.25rem;
+  position: relative;
+  overflow: hidden;
+}
+.panel h2 {
+  font-family: var(--display);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(40px, 10vw, 96px);
+  line-height: 0.9;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  letter-spacing: -1px;
+  margin-top: 0.5rem;
+}
+.panel.red { background: var(--red); color: var(--paper); }
+.panel.red .tag { color: rgba(242, 240, 236, 0.7); }
+.panel.ink { background: var(--ink); color: var(--paper); }
+.panel.ink .tag { color: rgba(242, 240, 236, 0.6); }
+.panel-brain {
+  width: 150px;
+  margin-top: 1.5rem;
+  opacity: 0.95;
+}
+
+.body {
+  padding: 2rem 1.25rem 2.5rem;
+  max-width: 720px;
+}
+.body p + p { margin-top: 0.9rem; }
+
+/* datos rápidos */
+.facts { list-style: none; margin-top: 1.6rem; border-top: 1px solid var(--line); }
+.facts li {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--display);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+}
+
+/* pasos */
+.steps { list-style: none; display: grid; gap: 2.2rem; }
+.steps li { display: grid; grid-template-columns: auto 1fr; gap: 1rem; }
+.steps .num {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: 3.6rem;
+  line-height: 0.8;
+  color: var(--red);
+}
+.steps h3 {
+  font-family: var(--display);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.steps p { margin-bottom: 1rem; }
+
+/* guía desplegable */
+details { border-top: 1.5px solid var(--ink); }
+details:last-of-type { border-bottom: 1.5px solid var(--ink); }
+summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 0;
+  font-family: var(--display);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 1.7rem;
+  line-height: 1;
+}
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; font-family: var(--pix); font-size: 12px; }
+details[open] summary::after { content: "–"; }
+details > :not(summary) { margin-bottom: 0.9rem; }
+details ol, details ul { padding-left: 1.3rem; }
+details li + li { margin-top: 0.45rem; }
+details h4 {
+  font-family: var(--pix);
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-top: 1.3rem;
+}
+.note {
+  background: var(--bone);
+  border-left: 4px solid var(--red);
+  padding: 0.9rem 1rem;
+}
+.note .tag { display: block; color: var(--red); margin-bottom: 0.3rem; }
+
+/* problemas frecuentes */
+.faq dt {
+  font-family: var(--display);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 1.35rem;
+  line-height: 1.05;
+  margin-top: 1.4rem;
+}
+.faq dt:first-child { margin-top: 0; }
+.faq dd { color: var(--dim); margin-top: 0.3rem; }
+
+/* contacto */
+.contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.2rem;
+  align-items: center;
+  padding: 2.5rem 1.25rem;
+  border-bottom: 1.5px solid var(--ink);
+}
+.contact img { width: 140px; }
+.big-link {
+  display: block;
+  font-family: var(--display);
+  font-weight: 900;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: clamp(32px, 8vw, 72px);
+  line-height: 1;
+  letter-spacing: -1px;
+  margin-top: 0.4rem;
+  word-break: break-word;
+  transition: opacity 0.15s, letter-spacing 0.2s;
+}
+.big-link span { color: var(--dim); }
+/* En el celular el dominio va en su propia linea, para no cortar la palabra. */
+@media (max-width: 859px) {
+  .big-link { font-size: clamp(28px, 9vw, 48px); }
+  .big-link span { display: block; }
+}
+.big-link.small { font-size: clamp(26px, 5vw, 44px); color: var(--red); }
+.big-link:hover { opacity: 0.4; letter-spacing: 2px; }
+
+/* ---------- escritorio ---------- */
+@media (min-width: 860px) {
+  body { font-size: 18px; }
+  .topbar, .bottombar { padding: 0.8rem 2rem; }
+  .hero { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); padding: 4rem 2.5rem; }
+  .hero h1 { font-size: clamp(80px, 10vw, 180px); }
+  .split { grid-template-columns: minmax(280px, 40%) minmax(0, 1fr); }
+  .panel h2 { font-size: clamp(44px, 5.6vw, 96px); }
+  .panel { padding: 3rem 2.5rem; border-right: 1.5px solid var(--ink); }
+  .panel-brain { position: absolute; right: -30px; bottom: -20px; width: 220px; }
+  .body { padding: 3rem 2.5rem 3.5rem; }
+  .contact { grid-template-columns: auto 1fr; padding: 3rem 2.5rem; gap: 2.5rem; }
+  .contact img { width: 180px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-brain { animation: none; }
+  html { scroll-behavior: auto; }
+}
